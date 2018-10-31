@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TaskManager.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    My ASP.NET Application
+                </h1>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
+                    EnableViewState="False" IncludeStyleBlock="false" Orientation="Horizontal" 
+                    BackColor="#E3EAEB" DynamicHorizontalOffset="2" Font-Names="Verdana" 
+                    Font-Size="1.4em" ForeColor="#666666" StaticSubMenuIndent="10px">
+                    <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <DynamicMenuStyle BackColor="#E3EAEB" />
+                    <DynamicSelectedStyle BackColor="#1C5E55" />
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Views/Projects.aspx" Text="Проекты"/>
+                        <asp:MenuItem NavigateUrl="~/Views/Tasks.aspx" Text="Задачи"/>
+                        <asp:MenuItem NavigateUrl="~/Views/Persons.aspx" Text="Персоны"/>
+                    </Items>
+                    <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                    <StaticSelectedStyle BackColor="#1C5E55" />
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

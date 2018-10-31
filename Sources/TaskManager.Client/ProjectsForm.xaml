@@ -1,0 +1,99 @@
+﻿<Window x:Class="TaskManager.Client.ProjectsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TrainingTask" Height="492" Width="806" Loaded="Window_Loaded" >
+    <Grid Margin="0">
+
+        <DockPanel  HorizontalAlignment="Right" Name="dockForInfoWindow" VerticalAlignment="Top" Margin="0,3,15,0">
+            <Button Click="BtnInfoClick" FontSize="14">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Button.Template>
+                <TextBlock Text="About"/>
+            </Button>
+        </DockPanel>
+            <TabControl Name="tabAppControl" Margin="5,5,5,45">
+            <TabItem Header="Projects" Name="tabProjects">
+                <Grid>
+                    <ListView Name="ProjectlistView"  ItemsSource="{Binding}" Margin="5">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ProjectID" DisplayMemberBinding="{Binding Path=ProjectID}"/>
+                                <GridViewColumn Header="Project Name" DisplayMemberBinding="{Binding Path=PrName}" Width="150"/>
+                                <GridViewColumn Header="Short Name" DisplayMemberBinding="{Binding Path=PrShortName}" Width="100"/>
+                                <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Path=Description}" Width="350"/>
+                                <GridViewColumn Header="Edit" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="Edit" Tag="{Binding Path=ProjectID}" Click="EditClick" Margin="3"/>
+                                                <Button Content="Delete" Tag="{Binding Path=ProjectID}" Click="DeleteClick" Margin="3"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tasks" Name="tabTasks">
+                <Grid>
+                    <ListView Name="TasklistView"  ItemsSource="{Binding}" Margin="5">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="TaskId" DisplayMemberBinding="{Binding Path=TaskId}"/>
+                                <GridViewColumn Header="PrShortName" DisplayMemberBinding="{Binding Path=PrShortName}" Width="50"/>
+                                <GridViewColumn Header="TaskName" DisplayMemberBinding="{Binding Path=TaskName}" Width="100"/>
+                                <GridViewColumn Header="BeginTime" DisplayMemberBinding="{Binding Path=BeginTime}" Width="100"/>
+                                <GridViewColumn Header="EndTime" DisplayMemberBinding="{Binding Path=EndTime}" Width="100"/>
+                                <GridViewColumn Header="TaskPersons" DisplayMemberBinding="{Binding Path=TaskPersons}" Width="150"/>
+                                <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}" Width="100"/>
+                                <GridViewColumn Header="Edit" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="Edit" Tag="{Binding Path=TaskId}" Click="EditClick" Margin="3"/>
+                                                <Button Content="Delete" Tag="{Binding Path=TaskId}" Click="DeleteClick" Margin="3"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Persons" Name="tabPersons">
+                <Grid>
+                    <ListView Name="PersonlistView"  ItemsSource="{Binding}" Margin="5">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="PersonID" DisplayMemberBinding="{Binding Path=PersonID}"/>
+                                <GridViewColumn Header="Soname" DisplayMemberBinding="{Binding Path=Soname}" Width="150"/>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" Width="100"/>
+                                <GridViewColumn Header="Second Name" DisplayMemberBinding="{Binding Path=SecondName}" Width="150"/>
+                                <GridViewColumn Header="Position" DisplayMemberBinding="{Binding Path=Position}" Width="200"/>
+                                <GridViewColumn Header="Edit" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="Edit" Tag="{Binding Path=PersonID}" Click="EditClick" Margin="3"/>
+                                                <Button Content="Delete" Tag="{Binding Path=PersonID}" Click="DeleteClick" Margin="3"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <DockPanel  HorizontalAlignment="Left" Name="dockForButtons" VerticalAlignment="Bottom">
+            <Button Content="Create New" Height="34" HorizontalAlignment="Left" Margin="5" Name="btnCreateNew" VerticalAlignment="Bottom" Width="150" Click="BtnCreateNewClick" />
+        </DockPanel>
+    </Grid>
+</Window>

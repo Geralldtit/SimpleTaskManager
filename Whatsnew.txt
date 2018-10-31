@@ -1,0 +1,2 @@
+Added WCF services and WPF-client
+All functional complete

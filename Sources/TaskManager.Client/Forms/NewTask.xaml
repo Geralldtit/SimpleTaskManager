@@ -1,0 +1,36 @@
+﻿<Window x:Class="TaskManager.Client.Forms.NewTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NewTask" Height="410" Width="763">
+    <Grid>
+        <Grid Name="gridTask">
+            <Label Content="Task ID" Height="28" HorizontalAlignment="Left" Margin="27,31,0,0" Name="lblTaskIDCaption" VerticalAlignment="Top" />
+            <TextBlock Name="tblTaskId" Height="28" HorizontalAlignment="Left" Margin="184,31,0,0" VerticalAlignment="Top" Text="{Binding Path=TaskId}"/>
+            <Label Content="Project Short Name" Height="28" HorizontalAlignment="Left" Margin="27,74,0,0" Name="lblPrShortName" VerticalAlignment="Top" />
+            <Label Content="Task Name" Height="28" HorizontalAlignment="Left" Margin="27,117,0,0" Name="lblTaskName" VerticalAlignment="Top" />
+            <Label Content="Hours" Height="28" HorizontalAlignment="Left" Margin="27,160,0,0" Name="lblHours" VerticalAlignment="Top" />
+            <Label Content="Begin Time" Height="28" HorizontalAlignment="Left" Margin="27,203,0,0" Name="lblBeginTime" VerticalAlignment="Top" />
+            <Label Content="End Time" Height="28" HorizontalAlignment="Left" Margin="27,246,0,0" Name="lblEndTime" VerticalAlignment="Top" />
+            <Label Content="Status" Height="28" HorizontalAlignment="Left" Margin="27,289,0,0" Name="lblStatus" VerticalAlignment="Top" />
+            <Label Content="Persons:" Height="28" HorizontalAlignment="Left" Margin="437,31,0,0" Name="lblPersons" VerticalAlignment="Top" />
+
+            <TextBox Height="23" Text="{Binding Path=TaskName, ValidatesOnDataErrors=True, Mode=TwoWay}" HorizontalAlignment="Left" Margin="184,117,0,0" Name="txbTaskName" VerticalAlignment="Top" Width="120" />
+            <TextBox Height="23" Text="{Binding Path=Hours, ValidatesOnDataErrors=True, Mode=TwoWay}" HorizontalAlignment="Left" Margin="184,162,0,0" Name="txbHours" VerticalAlignment="Top" Width="120" />
+            <TextBox Height="23" Text="{Binding Path=BeginTime, ValidatesOnDataErrors=True, Mode=TwoWay}" HorizontalAlignment="Left" Margin="184,205,0,0" Name="txbBeginTime" VerticalAlignment="Top" Width="120" />
+            <TextBox Height="23" Text="{Binding Path=EndTime, ValidatesOnDataErrors=True, Mode=TwoWay}" HorizontalAlignment="Left" Margin="184,248,0,0" Name="txbEndTime" VerticalAlignment="Top" Width="120" />
+            <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="229,336,0,0" Name="btnSubmit" VerticalAlignment="Top" Width="75" IsDefault="True" Click="BtnSubmitClick" />
+            <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="0,336,229,0" Name="btnCancel" VerticalAlignment="Top" Width="75" IsCancel="True" Click="BtnCancelClick" />
+        </Grid>
+        <ComboBox Height="23" ItemsSource="{Binding}" DisplayMemberPath="PrShortName" HorizontalAlignment="Left" Margin="184,74,0,0" Name="cmbPrShortName" VerticalAlignment="Top" Width="120" SelectedIndex="0" />
+        <ComboBox Height="23" ItemsSource="{Binding}" DisplayMemberPath="StatusTitle" HorizontalAlignment="Left" Margin="184,289,0,0" Name="cmbStatus" VerticalAlignment="Top" Width="120" SelectedIndex="0" />
+        <ScrollViewer Height="238" HorizontalAlignment="Left" Margin="437,74,0,0" Name="scrollViewer1" VerticalAlignment="Top" Width="261">
+            <ListBox  ItemsSource="{Binding}" Name="lsbPersons" SelectionMode="Multiple">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Name="chbPerson" Content="{Binding Path=PersonSource.Soname}" IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"></CheckBox>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+    </Grid>
+</Window>

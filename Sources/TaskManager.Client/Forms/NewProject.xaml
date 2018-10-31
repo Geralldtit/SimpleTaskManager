@@ -1,0 +1,50 @@
+﻿<Window x:Class="TaskManager.Client.Forms.NewProject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Project" Height="458" Width="794">
+    <Grid Name="gridProject" DataContext="{Binding}">
+        <Label Content="ID" Height="28" HorizontalAlignment="Left" Margin="13,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Назание" Height="28" HorizontalAlignment="Left" Margin="12,51,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Сокращенное название" Height="28" HorizontalAlignment="Left" Margin="12,85,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Описание" Height="28" HorizontalAlignment="Left" Margin="12,119,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="Список задач проекта:" Height="28" HorizontalAlignment="Left" Margin="13,152,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="{Binding Path=ProjectID}" Height="28" HorizontalAlignment="Left" Margin="165,12,0,0" Name="label6" VerticalAlignment="Top" />
+
+        <TextBox Height="23" Text="{Binding Path=PrName, ValidatesOnDataErrors=True, Mode=TwoWay}" HorizontalAlignment="Left" Margin="165,51,0,0" Name="txbPrName" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" Text="{Binding Path=PrShortName, ValidatesOnDataErrors=True, Mode=TwoWay}" HorizontalAlignment="Left" Margin="165,85,0,0" Name="txbPrShortName" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" Text="{Binding Path=Description, ValidatesOnDataErrors=True, Mode=TwoWay}" HorizontalAlignment="Left" Margin="165,119,0,0" Name="txbPrDescription" VerticalAlignment="Top" Width="120" />
+        <DockPanel Margin="0,173,0,45">
+            <Grid>
+                <ListView Name="TasklistView"  ItemsSource="{Binding}" Margin="5">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="TaskId" DisplayMemberBinding="{Binding Path=TaskId}"/>
+                            <GridViewColumn Header="PrShortName" DisplayMemberBinding="{Binding Path=PrShortName}" Width="50"/>
+                            <GridViewColumn Header="TaskName" DisplayMemberBinding="{Binding Path=TaskName}" Width="100"/>
+                            <GridViewColumn Header="BeginTime" DisplayMemberBinding="{Binding Path=BeginTime}" Width="100"/>
+                            <GridViewColumn Header="EndTime" DisplayMemberBinding="{Binding Path=EndTime}" Width="100"/>
+                            <GridViewColumn Header="TaskPersons" DisplayMemberBinding="{Binding Path=TaskPersons}" Width="150"/>
+                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}" Width="100"/>
+                            <GridViewColumn Header="Edit" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Edit" Tag="{Binding Path=TaskId}" Click="EditClick" Margin="3"/>
+                                            <Button Content="Delete" Tag="{Binding Path=TaskId}" Click="DeleteClick" Margin="3"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </DockPanel>
+        <DockPanel VerticalAlignment="Bottom" Height="45
+                   ">
+            <Button Content="Add New Task" Height="34" HorizontalAlignment="Left" Margin="5,5,0,0" Name="btnAddTask" VerticalAlignment="Top" Width="113" Click="BtnAddTaskClick" />
+            <Button Content="Submit New Project" Height="34" HorizontalAlignment="Left" Margin="450,5,0,0" Name="btnSubmitProject" VerticalAlignment="Top" Width="116" IsDefault="True" Click="BtnSubmitProjectClick" />
+            <Button Content="Cancel" Height="34" HorizontalAlignment="Left" Margin="5" Name="button2" VerticalAlignment="Top" Width="75" IsCancel="True" />
+        </DockPanel>
+    </Grid>
+</Window>

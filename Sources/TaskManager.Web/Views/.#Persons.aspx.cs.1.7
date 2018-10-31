@@ -1,0 +1,46 @@
+﻿using System;
+using System.Web.UI.WebControls;
+using System.Configuration;
+using Qulix.SakhonchikII.TrainingTask.Properties;
+using Qulix.SakhonchikII.TrainingTask.Services;
+using Qulix.SakhonchikII.TrainingTask.Data.Entities;
+
+namespace Qulix.SakhonchikII.TrainingTask.Web.Views
+{
+    public partial class Persons : System.Web.UI.Page
+    {   
+        //TODO:CR: Performance: Blo creates for each request.
+        //TODO:CR:SAK-CMT: Created Static Application property for Blo object
+
+        #region Methods
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                if (Request.QueryString.HasKeys())
+                {
+                    if (Request.QueryString["del"] == "1")
+                    {
+                        int id;
+                        int.TryParse(Request.QueryString["id"], out id);
+                        if (id > 0)
+                             Global.ExcepHandler.Process(() => Global.PersonsBlo.DeletePerson(id));
+                    }
+                }
+
+                //TODO:CR: Resources
+                //TODO:CR:SAK-FIX: Probably databinding would be better
+                GridPersons.DataSource = Global.ExcepHandler.Handle(() => Global.PersonsBlo.GetAllPersons());
+                GridPersons.DataBind();
+            }
+        }
+
+        protected void LnkCreatePersonClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/NewPerson.aspx");
+        }
+
+        #endregion
+    }
+}

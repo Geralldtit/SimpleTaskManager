@@ -1,0 +1,2 @@
+sqlcmd -icreateTrainingTaskerWithAllTablesAndData.sql
+pause
